@@ -19,12 +19,7 @@ public class Main {
 //			o	Age Range and Legislation
 //			o	etc
 		
-		
-		
-		
-		
-		
-		
+
 	}
 
 }
