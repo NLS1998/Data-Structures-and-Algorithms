@@ -4,6 +4,8 @@ public class Main {
 
 	public static void main(String[] args) {
 //		TODO:
+//		•	CSVReader to Read in all the files (One CSVReader reads in each file sequentially)
+//		•	CSVReader will be creating the Hashtable, populated with Stop Objects.
 //		•	List all Reasons For Search
 //		•	Display all the Stop&Search’s with a user specified Reason For Search
 //		•	Determine how many Stop&Search’s were:
@@ -18,8 +20,6 @@ public class Main {
 //			o	Gender and Outcome
 //			o	Age Range and Legislation
 //			o	etc
-		
-
 	}
 
 }
