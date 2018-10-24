@@ -1,8 +1,17 @@
 package main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		
+		File file = new File("");
+		Scanner scan = new Scanner(System.in);
+		
 //		TODO:
 //		•	CSVReader to Read in all the files (One CSVReader reads in each file sequentially)
 //		•	CSVReader will be creating the Hashtable, populated with Stop Objects.
@@ -21,5 +30,4 @@ public class Main {
 //			o	Age Range and Legislation
 //			o	etc
 	}
-
 }

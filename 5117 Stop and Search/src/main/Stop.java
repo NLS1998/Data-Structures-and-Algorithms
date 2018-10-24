@@ -21,4 +21,5 @@ public class Stop {
 	EnumEthnicity ethnicity;
 	
 	
+	
 }
