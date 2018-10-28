@@ -21,6 +21,7 @@ public class CSVReader {
 			    BufferedReader br = null;
 				try {
 					br = new BufferedReader(new FileReader(csv));
+					System.out.println(csv.getAbsolutePath());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();			} 
     	  
@@ -30,8 +31,7 @@ public class CSVReader {
 			    System.out.println(allData);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} 
-			    System.out.println(csv.getAbsolutePath());
+		}		    
 			});
 		} catch (IOException e) {
 			e.printStackTrace();
