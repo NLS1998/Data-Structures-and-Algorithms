@@ -1,25 +1,22 @@
 package main;
 
-public class Stop {
-	int ID;
-	String type;
-	Date date;
+public enum Stop {
+		personsearch("Person search"),
+		personvehiclesearch("Person and Vehicle search");
+		private final String str;
+		private Stop(String aStr) {
+		this.str = aStr;
+		}
+		public String toString() {
+		return this.str;
+		}
 	
-	boolean policingOperation;
-	String policingOperationType;
+		public static Stop getFrom(String aStr) {
+			for (Stop r : Stop.values())
+			if (r.str.equals(aStr))
+			return r;
+			throw new IllegalArgumentException ("Could not find a Role :" + aStr);
+			}
+		}
 	
-	float latitude;
-	float longitude;
-	
-	String legislation;
-	String searchReason;
-	
-	// ENUMERATORS -- Making it easier to search and sort by specific attributes
-	EnumGender gender;
-	EnumAgeRange ageRange;
-	String selfEthnicity; // due to how complex self-identified ethnicities are, we can't assume anything.
-	EnumEthnicity ethnicity;
-	
-	
-	
-}
+

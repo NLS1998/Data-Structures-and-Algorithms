@@ -1,33 +1,50 @@
 package main;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
+
+
 
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		
-		File file = new File("");
 		Scanner scan = new Scanner(System.in);
-		
-//		TODO:
-//		•	CSVReader to Read in all the files (One CSVReader reads in each file sequentially)
-//		•	CSVReader will be creating the Hashtable, populated with Stop Objects.
-//		•	List all Reasons For Search
-//		•	Display all the Stop&Search’s with a user specified Reason For Search
-//		•	Determine how many Stop&Search’s were:
-//			o	Successful 		(Punishment Related to Reason For Search)
-//			o	Partially Successful 	(Punishment Unrelated to Reason For Search)
-//			o	Unsuccessful 		(No Punishment)
-//		•	Determine which legislation produced the highest amount of Stop&Searches each month
-//		•	Determine which ethnic group is Stopped&Searched the most out of:
-//			o	By Month per Police Force (+ In Reverse Order by Date) 
-//			o	By Specified Legislation
-//		•	One More Feature that uses Searching/Sorting of our choosing (Multiple Search Attributes)
-//			o	Gender and Outcome
-//			o	Age Range and Legislation
-//			o	etc
-	}
-}
+
+		String choice = "";
+
+		do {
+			System.out.println("\n** MAIN MENU **");
+			System.out.println("1 - Crime Type");
+			System.out.println("2 - Last Outcome");
+			System.out.println("3 - Lsoa Name");
+			System.out.println("Q - Quit");
+			System.out.print("Pick : ");
+
+			choice = scan.next().toUpperCase();
+
+			switch (choice) {
+			case "1": {
+				break;
+			}
+			case "2": {
+				break;
+			}
+			case "3": {
+
+				break;
+			}
+			}
+		} while (!choice.equals("Q"));
+		System.out.println("-- GOODBYE --");
+	}}
+	
+	
