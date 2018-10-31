@@ -9,6 +9,18 @@ public class Date {
 	private int minutes;
 	private int seconds;
 	
+	public Date(String dateString) {
+		
+		// TO DO:
+		// SERIALIZATION OF STRING INTO DATE OBJECT TYPE IS DONE HERE
+		
+		
+		
+		
+	}
+	
+	
+	
 	// GETTERS AND SETTERS
 	public int getYear() {
 		return year;
