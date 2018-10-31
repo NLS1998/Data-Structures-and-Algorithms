@@ -58,7 +58,7 @@ public class CSVReader {
 	public String clothesRemoval;
 	
 	
-	public CSVReader(String csvString) {
+	public void DATA(String csvString) {
 		String[] csvParts = csvString.split(SEP, -1);
 		int idx = 0;		
 		stop = Stop.getFrom(csvParts[idx++]);
