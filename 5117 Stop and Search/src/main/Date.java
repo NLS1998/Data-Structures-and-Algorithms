@@ -9,13 +9,14 @@ public class Date {
 	private int minutes;
 	private int seconds;
 	
-	public Date(String dateString) {
+	public Date(int year, int month, int day, int hour, int minutes, int seconds) {
 		
-		// TO DO:
-		// SERIALIZATION OF STRING INTO DATE OBJECT TYPE IS DONE HERE
-		
-		
-		
+		this.year = year;
+		this.month = month;
+		this.day = day;
+		this.hour = hour;
+		this.minutes = minutes;
+		this.seconds = seconds;	
 		
 	}
 	

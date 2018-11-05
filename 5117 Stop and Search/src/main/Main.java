@@ -42,6 +42,7 @@ public class Main {
 
 			switch (choice) {
 			case "1": {
+				insertSortA(stopList);;
 				break;
 			}
 			case "2": {
@@ -54,6 +55,15 @@ public class Main {
 			}
 		} while (!choice.equals("Q"));
 		System.out.println("-- GOODBYE --");
-	}}
+	}
+	public static void insertSortA(List<Stop> list) {
+		for (int i = 1; i < list.size(); i++) {
+			for (int j = i; j > 0; j--) {
+				Stop lower = list.get(j - 1);
+				Stop higher = list.get(j);
+			}
+		}
+	}
+}
 	
 	
