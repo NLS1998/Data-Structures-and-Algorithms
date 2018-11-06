@@ -1,9 +1,9 @@
 package main;
 
 public enum EnumClothesRemoval {
-	True("True"),
-	False("False"),
-	Blank("N/A");
+	True("TRUE"),
+	False("FALSE"),
+	Blank("");
 	private final String str;
 	private EnumClothesRemoval(String aStr) {
 	this.str = aStr;

@@ -4,7 +4,8 @@ public enum EnumEthnicity {
 	WHITE("White"),
 	BLACK("Black"),
 	ASIAN("Asian"),
-	OTHER("Other");
+	OTHER("Other"),
+	BLANK("");
 	private final String str;
 	private EnumEthnicity(String aStr) {
 	this.str = aStr;

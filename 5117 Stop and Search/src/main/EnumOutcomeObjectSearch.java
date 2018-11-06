@@ -1,9 +1,9 @@
 package main;
 
 public enum EnumOutcomeObjectSearch {
-	True("True"),
-	False("False"),
-	Blank("N/A");
+	True("TRUE"),
+	False("FALSE"),
+	Blank("");
 	private final String str;
 	private EnumOutcomeObjectSearch(String aStr) {
 	this.str = aStr;

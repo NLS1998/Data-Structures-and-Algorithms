@@ -7,16 +7,16 @@ public enum EnumAgeRange {
 	MIDDLEAGE("over 34"), // 35+
 	UNSPECIFIED("");
 	private final String st;
-	private EnumAgeRange(String aStr) {
-	this.st = aStr;
+	private EnumAgeRange(String age) {
+	this.st = age;
 	}
 	public String toString() {
 	return this.st;
 	}
 	
-	public static EnumAgeRange getFrom(String aStr) {
+	public static EnumAgeRange getFrom(String age) {
 		for (EnumAgeRange r : EnumAgeRange.values())
-		if (r.st.equals(aStr))
+		if (r.st.equals(age))
 		return r;
 		throw new IllegalArgumentException();
 	}

@@ -8,10 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
 
 
 
@@ -30,7 +27,6 @@ public class CSVReader {
 			    BufferedReader br = null;
 				try {
 					br = new BufferedReader(new FileReader(csv));
-					System.out.println(csv.getAbsolutePath());
 					br.readLine();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();			
@@ -40,10 +36,9 @@ public class CSVReader {
 
     	  try {
     		  	String allData;
-    		  	String SEP = ",";
 				while ((allData = br.readLine()) != null) 
 				{
-					stopList.add(new Stop(allData, SEP));
+					stopList.add(new Stop(allData));
 					
 				}
 			} catch (IOException e) {
