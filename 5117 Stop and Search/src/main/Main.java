@@ -1,8 +1,11 @@
 package main;
 
 import java.io.FileNotFoundException;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
@@ -11,6 +14,7 @@ public class Main {
 		CSVReader reader = new CSVReader();
 		LinkedList<Stop> stopList = reader.createList();
 		Scanner scan = new Scanner(System.in);
+		Set<Stop> set = new LinkedHashSet<Stop>(stopList);
 
 		String choice = "";
 
@@ -28,8 +32,20 @@ public class Main {
 
 				switch (choice) {
 				case "1": {
-					Stop.insertSortA(stopList);
-					break;
+					for (int i = 1; i < stopList.size(); i++) {
+						for (int j = i; j > 0; j--) {
+							Stop lower = stopList.get(j - 1);
+							Stop higher = stopList.get(j);
+							if (higher.objectSearch.compareTo(lower.objectSearch) < 0) {
+								stopList.set(j, lower);
+								stopList.set(j - 1, higher);
+								System.out.println(stopList.get(j).tocsvString());
+								;
+
+							} else
+								break;
+						}
+					}
 				}
 				case "2": {
 					break;
@@ -42,6 +58,5 @@ public class Main {
 			} while (!choice.equals("Q"));
 			System.out.println("-- GOODBYE --");
 		}
-
 	}
 }

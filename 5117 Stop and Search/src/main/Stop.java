@@ -2,7 +2,7 @@ package main;
 
 import java.util.LinkedList;
 
-public class Stop {
+public class Stop extends Main {
 
 	// COMMENTS ARE ON HOW TO SERIALIZE EACH DATA TYPE Position in csvParts List
 	public final String SEP = ",";
@@ -41,11 +41,9 @@ public class Stop {
 		outcomeObjectSearch = EnumOutcomeObjectSearch.getFrom(csvParts[13]);
 		clothesRemoval = EnumClothesRemoval.getFrom(csvParts[14]);
 	}
-
 	public String tocsvString() {
-		return type + SEP + date + SEP + policingOperation + SEP + policingOperationType + SEP + SEP + latitude + SEP
-				+ longitude + SEP + gender + SEP + ageRange + SEP + selfEthnicity + SEP + ethnicity + SEP + legislation
-				+ SEP + objectSearch + SEP + outcome + SEP + outcomeObjectSearch + SEP + clothesRemoval;
+		
+		return  objectSearch + SEP ;
 
 	}
 
