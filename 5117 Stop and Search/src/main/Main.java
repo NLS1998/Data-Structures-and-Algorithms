@@ -11,10 +11,9 @@ public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		CSVReader reader = new CSVReader();
-		LinkedList<Stop> stopList = reader.createList();
+		CSVReader reader = new CSVReader();// reads csvreader class
+		LinkedList<Stop> stopList = reader.createList();// Creates List
 		Scanner scan = new Scanner(System.in);
-		Set<Stop> set = new LinkedHashSet<Stop>(stopList);
 
 		String choice = "";
 
@@ -22,7 +21,7 @@ public class Main {
 
 			do {
 				System.out.println("\n** MAIN MENU **");
-				System.out.println("1 - Crime Type");
+				System.out.println("1 - Object Of Search");
 				System.out.println("2 - Last Outcome");
 				System.out.println("3 - Lsoa Name");
 				System.out.println("Q - Quit");
@@ -31,7 +30,7 @@ public class Main {
 				choice = scan.next().toUpperCase();
 
 				switch (choice) {
-				case "1": {
+				case "1": { // Iterates through object search column and prints to String.
 					for (int i = 1; i < stopList.size(); i++) {
 						for (int j = i; j > 0; j--) {
 							Stop lower = stopList.get(j - 1);

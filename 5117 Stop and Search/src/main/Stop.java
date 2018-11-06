@@ -22,7 +22,7 @@ public class Stop extends Main {
 	EnumOutcomeObjectSearch outcomeObjectSearch;// 13
 	EnumClothesRemoval clothesRemoval;// 14
 
-	public Stop(String csvString) {
+	public Stop(String csvString) {// Serialises all read in data
 
 		String[] csvParts = csvString.split(SEP, -1); // Returns an array
 		type = csvParts[0];
@@ -41,24 +41,10 @@ public class Stop extends Main {
 		outcomeObjectSearch = EnumOutcomeObjectSearch.getFrom(csvParts[13]);
 		clothesRemoval = EnumClothesRemoval.getFrom(csvParts[14]);
 	}
+
 	public String tocsvString() {
-		
-		return  objectSearch + SEP ;
 
-	}
+		return objectSearch + SEP; // Prints only Object Search column
 
-	public static void insertSortA(LinkedList<Stop> stopList) {
-
-		for (int i = 1; i < stopList.size(); i++) {
-			for (int j = i; j > 0; j--) {
-				Stop lower = stopList.get(j - 1);
-				Stop higher = stopList.get(j);
-				if (higher.objectSearch.compareTo(lower.objectSearch) < 0) {
-					stopList.set(j, lower);
-					stopList.set(j - 1, higher);
-				} else
-					break;
-			}
-		}
 	}
 }
