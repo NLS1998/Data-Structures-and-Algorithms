@@ -1,7 +1,5 @@
 package main;
 
-import java.util.LinkedList;
-
 public class Stop extends Main {
 
 	// COMMENTS ARE ON HOW TO SERIALIZE EACH DATA TYPE Position in csvParts List
@@ -46,5 +44,9 @@ public class Stop extends Main {
 
 		return objectSearch + SEP; // Prints only Object Search column
 
-	}
-}
+	
+		  }
+	
+		}
+
+	
