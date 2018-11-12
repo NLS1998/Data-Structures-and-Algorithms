@@ -33,7 +33,7 @@ public class Main {
 						for (int j = i; j > 0; j--) {
 							Stop lower = stopList.get(j - 1);
 							Stop higher = stopList.get(j);
-							if (higher.objectSearch.compareTo(lower.objectSearch) < 0) {
+							if (higher.getObjectSearch().compareTo(lower.getObjectSearch()) < 0) {
 								stopList.set(j, lower);
 								stopList.set(j - 1, higher);
 								System.out.println(stopList.get(j).tocsvString());
@@ -58,27 +58,37 @@ public class Main {
 	}
 
 	// Got this part in for task C however cannot get the successful part to work
-	// It constantly says that it cannot convert from an enum to a boolean
-	//However it is the True or False value from the data we need to sort this part
+	// It constantly says that it cannot convert from an Enum to a boolean
+	// However it is the True or False value from the data we need to sort this part
+	
+	//TODO: Counts are wrong??
 	
 	private static void outputCrimes(List<Stop> stopList) {
-		int successful = 0, partSuccessful = 0, unsuccessful = 0;
+		int successful = 0, partSuccessful = 0, unsuccessful = 0, invalid = 0;
 		for (int i = 0; i < stopList.size(); i++) {
 			Stop currentCrime = stopList.get(i);
 			if (currentCrime != null) {
-				if (currentCrime.outcomeObjectSearch.True)
+				System.out.println(currentCrime.getOutcomeObjectSearch());
+				if (currentCrime.getOutcomeObjectSearch().toString() == "TRUE") { // If outcome was related to object of search, then it was a successful stop.
 					successful++;
-				else if (currentCrime.outcome.matches("(A no|Nothing found).*"))
+				}
+				else if (currentCrime.getOutcome().equals("Nothing found - no further action")) { // If nothing was found and no further action was taken, it was unsuccessful.
 					unsuccessful++;
-				else
+				}
+				else if (!(currentCrime.getOutcome().equals("Nothing found - no further action") && currentCrime.getOutcomeObjectSearch().toString() == "FALSE")) { // If the outcome WASNT 'Nothing found' AND the outcome wasn't equal to the object of search, partial success.
 					partSuccessful++;
-
+				}
+				else {
+					invalid++;
+				}
 			}
 		}
+		
 		System.out.println("There are " + stopList.size() + " recorded crimes; ");
 		System.out.println(successful + " were successful");
 		System.out.println(partSuccessful + " were partially successful");
 		System.out.println(unsuccessful + " were unsuccessful");
+		if(invalid != 0) System.out.println(invalid + " have invalid enumerators!");
 	}
 	
 }
