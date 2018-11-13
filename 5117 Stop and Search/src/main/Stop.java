@@ -10,34 +10,35 @@ public class Stop extends Main {
 	private String policingOperationType; // 3
 	private String latitude; // 4
 	private String longitude; // 5
-	private EnumGender gender;// 6
+	private String gender;// 6
 	private EnumAgeRange ageRange;// 7
 	private String selfEthnicity;// 8
-	private EnumEthnicity ethnicity;// 9
+	private String ethnicity;// 9
 	private String legislation; // 10
-	private EnumObjectSearch objectSearch;// 11
+	private String objectSearch;// 11
 	private String outcome;// 12
-	private EnumOutcomeObjectSearch outcomeObjectSearch;// 13
-	private EnumClothesRemoval clothesRemoval;// 14
-
+	private Boolean outcomeObjectSearch;// 13
+	private String clothesRemoval;// 14
+	
 	Stop(String csvString) {// Serialises all read in data
 
 		String[] csvParts = csvString.split(SEP, -1); // Returns an array
-		type = csvParts[0];
-		date = csvParts[1];
-		policingOperation = csvParts[2];
-		policingOperationType = csvParts[3];
-		latitude = csvParts[4];
-		longitude = csvParts[5];
-		gender = EnumGender.getFrom(csvParts[6]);
-		ageRange = EnumAgeRange.getFrom(csvParts[7]);
-		selfEthnicity = csvParts[8];
-		ethnicity = EnumEthnicity.getFrom(csvParts[9]);
-		legislation = csvParts[10];
-		objectSearch = EnumObjectSearch.getFrom(csvParts[11]);
-		outcome = csvParts[12];
-		outcomeObjectSearch = EnumOutcomeObjectSearch.getFrom(csvParts[13]);
-		clothesRemoval = EnumClothesRemoval.getFrom(csvParts[14]);
+		int idx = 0;
+		type = csvParts[idx++];
+		date = csvParts[idx++];
+		policingOperation = csvParts[idx++];
+		policingOperationType = csvParts[idx++];
+		latitude = csvParts[idx++];
+		longitude = csvParts[idx++];
+		gender = csvParts[idx++];
+		ageRange = EnumAgeRange.getFrom(csvParts[idx++]);
+		selfEthnicity = csvParts[idx++];
+		ethnicity = csvParts[idx++];
+		legislation = csvParts[idx++];
+		objectSearch = csvParts[idx++];
+		outcome = csvParts[idx++];
+		outcomeObjectSearch =  Boolean.parseBoolean(csvParts[idx++]);
+		clothesRemoval = csvParts[idx++];
 	}
 
 	public String tocsvString() {
@@ -93,14 +94,6 @@ public class Stop extends Main {
 		this.longitude = longitude;
 	}
 
-	public EnumGender getGender() {
-		return gender;
-	}
-
-	public void setGender(EnumGender gender) {
-		this.gender = gender;
-	}
-
 	public EnumAgeRange getAgeRange() {
 		return ageRange;
 	}
@@ -117,11 +110,11 @@ public class Stop extends Main {
 		this.selfEthnicity = selfEthnicity;
 	}
 
-	public EnumEthnicity getEthnicity() {
+	public String getEthnicity() {
 		return ethnicity;
 	}
 
-	public void setEthnicity(EnumEthnicity ethnicity) {
+	public void setEthnicity(String ethnicity) {
 		this.ethnicity = ethnicity;
 	}
 
@@ -133,41 +126,47 @@ public class Stop extends Main {
 		this.legislation = legislation;
 	}
 
-	public EnumObjectSearch getObjectSearch() {
+	public String getObjectSearch() {
 		return objectSearch;
 	}
 
-	public void setObjectSearch(EnumObjectSearch objectSearch) {
+	public void setObjectSearch(String objectSearch) {
 		this.objectSearch = objectSearch;
 	}
 
 	public String getOutcome() {
 		return outcome;
 	}
-
+	
 	public void setOutcome(String outcome) {
 		this.outcome = outcome;
 	}
 
-	public EnumOutcomeObjectSearch getOutcomeObjectSearch() {
-		return outcomeObjectSearch;
-	}
-
-	public void setOutcomeObjectSearch(EnumOutcomeObjectSearch outcomeObjectSearch) {
-		this.outcomeObjectSearch = outcomeObjectSearch;
-	}
-
-	public EnumClothesRemoval getClothesRemoval() {
+	public String getClothesRemoval() {
 		return clothesRemoval;
 	}
 
-	public void setClothesRemoval(EnumClothesRemoval clothesRemoval) {
+	public void setClothesRemoval(String clothesRemoval) {
 		this.clothesRemoval = clothesRemoval;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getSEP() {
 		return SEP;
-	}	
-}
+	}		
 
-	
+	public Boolean getOutcomeObjectSearch() {
+		// TODO Auto-generated method stub
+		return outcomeObjectSearch;
+	}
+	public void setOutcomeObjectSearch(Boolean outcomeObjectSearch) {
+		this.outcomeObjectSearch = outcomeObjectSearch;
+	}
+	}

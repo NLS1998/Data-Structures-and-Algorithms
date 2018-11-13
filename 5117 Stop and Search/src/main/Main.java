@@ -15,80 +15,89 @@ public class Main {
 		outputCrimes(stopList);
 		String choice = "";
 
-		for (Stop stop : stopList) {
+		do {
+			System.out.println("\n** MAIN MENU **");
+			System.out.println("1 - Object Of Search");
+			System.out.println("2 - Last Outcome");
+			System.out.println("3 - Lsoa Name");
+			System.out.println("Q - Quit");
+			System.out.print("Pick : ");
 
-			do {
-				System.out.println("\n** MAIN MENU **");
-				System.out.println("1 - Object Of Search");
-				System.out.println("2 - Last Outcome");
-				System.out.println("3 - Lsoa Name");
-				System.out.println("Q - Quit");
-				System.out.print("Pick : ");
+			choice = scan.next().toUpperCase();
 
-				choice = scan.next().toUpperCase();
+			switch (choice) {
+			case "1": { // Iterates through object search column and prints to String.
+				for (int i = 1; i < stopList.size(); i++) {
+					for (int j = i; j > 0; j--) {
+						Stop lower = stopList.get(j - 1);
+						Stop higher = stopList.get(j);
+						if (higher.getObjectSearch().compareTo(lower.getObjectSearch()) < 0) {
+							stopList.set(j, lower);
+							stopList.set(j - 1, higher);
+							System.out.println(stopList.get(j).tocsvString());
+							;
 
-				switch (choice) {
-				case "1": { // Iterates through object search column and prints to String.
-					for (int i = 1; i < stopList.size(); i++) {
-						for (int j = i; j > 0; j--) {
-							Stop lower = stopList.get(j - 1);
-							Stop higher = stopList.get(j);
-							if (higher.getObjectSearch().compareTo(lower.getObjectSearch()) < 0) {
-								stopList.set(j, lower);
-								stopList.set(j - 1, higher);
-								System.out.println(stopList.get(j).tocsvString());
-								;
-
-							} else
-								break;
-						}
+						} else
+							break;
 					}
 				}
-				case "2": {
-					break;
-				}
-				case "3": {
+			}
+			case "2": {
+				break;
+			}
+			case "3": {
 
-					break;
-				}
-				}
-			} while (!choice.equals("Q"));
-			System.out.println("-- GOODBYE --");
-		}
+				break;
+			}
+			}
+		} while (!choice.equals("Q"));
+		System.out.println("-- GOODBYE --");
 	}
 
 	// Got this part in for task C however cannot get the successful part to work
 	// It constantly says that it cannot convert from an Enum to a boolean
 	// However it is the True or False value from the data we need to sort this part
-	
-	//TODO: Counts are wrong??
-	
+
+	// TODO: Counts are wrong??
+
 	private static void outputCrimes(List<Stop> stopList) {
 		int successful = 0, partSuccessful = 0, unsuccessful = 0, invalid = 0;
 		for (int i = 0; i < stopList.size(); i++) {
 			Stop currentCrime = stopList.get(i);
 			if (currentCrime != null) {
-				System.out.println(currentCrime.getOutcomeObjectSearch());
-				if (currentCrime.getOutcomeObjectSearch().toString() == "TRUE") { // If outcome was related to object of search, then it was a successful stop.
+				if (currentCrime.getOutcome()
+						.matches("(Suspect|Offender|Local|Article|Arrest|Khat|Penalty|Community|Summons|Caution).*")
+						&& currentCrime.getOutcomeObjectSearch() == true) { // If outcome was related to object of
+																			// search, then it was a successful stop.
 					successful++;
-				}
-				else if (currentCrime.getOutcome().equals("Nothing found - no further action")) { // If nothing was found and no further action was taken, it was unsuccessful.
-					unsuccessful++;
-				}
-				else if (!(currentCrime.getOutcome().equals("Nothing found - no further action") && currentCrime.getOutcomeObjectSearch().toString() == "FALSE")) { // If the outcome WASNT 'Nothing found' AND the outcome wasn't equal to the object of search, partial success.
+				} else if (currentCrime.getOutcome()
+						.matches("(Suspect|Offender|Local|Article|Arrest|Khat|Penalty|Community|Summons|Caution).*") 
+						&& currentCrime.getOutcomeObjectSearch() == false) { // If the outcome WASNT 'Nothing
+																			 // found' AND the outcome wasn't
+																			// equal to the object of
+												 							// search, partial success.
 					partSuccessful++;
-				}
-				else {
+				} else if (currentCrime.getOutcome().matches("(A no further action disposal|Nothing found).*")
+						&& currentCrime.getOutcomeObjectSearch() != true || false) { // If nothing was found and no
+																					 // further
+																					 // action was taken, it was
+																					 // unsuccessful.
+					unsuccessful++;
+				} else {
 					invalid++;
 				}
 			}
 		}
-		
-		System.out.println("There are " + stopList.size() + " recorded crimes; ");
-		System.out.println(successful + " were successful");
-		System.out.println(partSuccessful + " were partially successful");
-		System.out.println(unsuccessful + " were unsuccessful");
-		if(invalid != 0) System.out.println(invalid + " have invalid enumerators!");
+		String stars = "*****||******************************************************************||";
+		System.out.println("        THERE ARE " + stopList.size() + " RECORDED CRIMES! ");
+		System.out.println(stars);
+		System.out.println(successful + "  || Were successful and related to stop");
+		System.out.println(stars);
+		System.out.println(partSuccessful + "  || Were partially successful and not related to stop");
+		System.out.println(stars);
+		System.out.println(unsuccessful + " || Were unsuccessful");
+		System.out.println(stars);
+		System.out.println(invalid + "   || Were null");
+		System.out.println(stars);
 	}
-	
 }
