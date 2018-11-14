@@ -36,13 +36,16 @@ public class Main {
 							stopList.set(j - 1, higher);
 							System.out.println(stopList.get(j).tocsvString());
 							;
-
+								//this needs to be put into an array off only ObjectSearch and duplicates taken out.
 						} else
 							break;
 					}
 				}
 			}
 			case "2": {
+				
+				//for option 2 allow to only pick 1 of the object searchs and show only all details and records for specific chosen
+				//object search.
 				break;
 			}
 			case "3": {
