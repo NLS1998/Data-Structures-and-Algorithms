@@ -43,7 +43,7 @@ public class Stop extends Main {
 
 	public String tocsvString() {
 
-		return objectSearch + SEP; // Prints only Object Search column
+		return objectSearch; // Prints only Object Search column
 	}
 	
 	public String csvString() {
