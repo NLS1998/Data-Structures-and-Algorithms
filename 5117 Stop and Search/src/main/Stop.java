@@ -45,6 +45,11 @@ public class Stop extends Main {
 
 		return objectSearch + SEP; // Prints only Object Search column
 	}
+	
+	public String csvString() {
+
+		return legislation + SEP; // Prints only Object Search column
+	}
 
 	public String getType() {
 		return type;

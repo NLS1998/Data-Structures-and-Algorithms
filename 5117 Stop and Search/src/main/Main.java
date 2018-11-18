@@ -1,6 +1,7 @@
 package main;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class Main {
 
 		CSVReader reader = new CSVReader();// reads csvreader class
 		LinkedList<Stop> stopList = reader.createList();// Creates List
+		ArrayList<Stop> stopListArray = new ArrayList<>(stopList);// Converts stopList to array.
 		Scanner scan = new Scanner(System.in);
 		outputCrimes(stopList);
 		String choice = "";
@@ -26,28 +28,25 @@ public class Main {
 			choice = scan.next().toUpperCase();
 
 			switch (choice) {
-			case "1": { // Iterates through object search column and prints to String.
-				for (int i = 1; i < stopList.size(); i++) {
-					for (int j = i; j > 0; j--) {
-						Stop lower = stopList.get(j - 1);
-						Stop higher = stopList.get(j);
-						if (higher.getObjectSearch().compareTo(lower.getObjectSearch()) < 0) {
-							stopList.set(j, lower);
-							stopList.set(j - 1, higher);
-							System.out.println(stopList.get(j).tocsvString());
-							;
-								//this needs to be put into an array off only ObjectSearch and duplicates taken out.
-						} else
-							break;
+			case "1": { // loops through StopListArray and compares duplicates, if duplicate is found it is removed.
+				
+				System.out.println("Search Categories.\n");
+				for(int i = 0; i < stopListArray.size(); i++) {
+					for(int j = i + 1; j < stopListArray.size(); j++) {
+						if (stopListArray.get(i).tocsvString().equals(stopListArray.get(j).tocsvString())) {
+							stopListArray.remove(j);
+							j--;
+						}
 					}
+				
+					System.out.println("Object of Search =   " + stopListArray.get(i).tocsvString());
 				}
 			}
 			case "2": {
-				
-				//for option 2 allow to only pick 1 of the object searchs and show only all details and records for specific chosen
-				//object search.
 				break;
+
 			}
+
 			case "3": {
 
 				break;
@@ -74,17 +73,17 @@ public class Main {
 																			// search, then it was a successful stop.
 					successful++;
 				} else if (currentCrime.getOutcome()
-						.matches("(Suspect|Offender|Local|Article|Arrest|Khat|Penalty|Community|Summons|Caution).*") 
+						.matches("(Suspect|Offender|Local|Article|Arrest|Khat|Penalty|Community|Summons|Caution).*")
 						&& currentCrime.getOutcomeObjectSearch() == false) { // If the outcome WASNT 'Nothing
-																			 // found' AND the outcome wasn't
-																			// equal to the object of
-												 							// search, partial success.
+																				// found' AND the outcome wasn't
+																				// equal to the object of
+																				// search, partial success.
 					partSuccessful++;
 				} else if (currentCrime.getOutcome().matches("(A no further action disposal|Nothing found).*")
 						&& currentCrime.getOutcomeObjectSearch() != true || false) { // If nothing was found and no
-																					 // further
-																					 // action was taken, it was
-																					 // unsuccessful.
+																						// further
+																						// action was taken, it was
+																						// unsuccessful.
 					unsuccessful++;
 				} else {
 					invalid++;
