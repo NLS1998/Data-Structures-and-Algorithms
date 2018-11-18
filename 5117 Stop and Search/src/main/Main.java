@@ -27,6 +27,7 @@ public class Main {
 			System.out.print("Pick : ");
 
 			choice = scan.next().toUpperCase();
+		
 
 			switch (choice) {
 			case "1": { // loops through StopListArray and compares duplicates, if duplicate is found it
@@ -43,55 +44,78 @@ public class Main {
 
 					System.out.println("Object of Search =   " + stopListArray.get(i).tocsvString());
 				}
-				break;
-			}
-
-			case "2": {
-				System.out.println("Search Categories.\n");
-				for (int i = 0; i < stopListArray.size(); i++) {
-					for (int j = i + 1; j < stopListArray.size(); j++) {
-						if (stopListArray.get(i).tocsvString().equals(stopListArray.get(j).tocsvString())) {
-							stopListArray.remove(j);
-							j--;
-						}
+				System.out.println("\n** Please enter the object search name you would like to view data on **");
+				Scanner scanner = new Scanner(System.in);
+				String scans = scanner.nextLine();
+//				choice = scanner.next().toUpperCase();
+				boolean isExists = false;
+				
+				for(int counter = 0; counter < stopListArray.size(); counter++) {
+					for (int j = counter + 1; j < stopListArray.size(); j++) {
+					if (stopListArray.get(counter).getObjectSearch().equals(scans)) {
+						isExists = true; 
+						j--;
+						break;
+					}	
+					
+					
+						System.out.println("Object of Search =   " + stopListArray.get(counter).DatatoCSVString());
 					}
-
-					System.out.println("Object of Search =   " + stopListArray.get(i).tocsvString());
-					System.out.println("\n** Object of Search Choice **");
-					System.out.println("1 - Offensive weapons");
-					System.out.println("2 - Controlled drugs");
-					System.out.println("3 - Article for use in theft");
-					System.out.println("4 - Firearms");
-					System.out.println("5 - Evidence of offences under the Act");
-					System.out.println("6 - Fireworks");
-					System.out.println("5 - Crossbows");
-					System.out.println("5 - Goods on which duty has not been paid etc");
-					System.out.println("Q - Quit");
-					System.out.print("Pick : ");
-					
-					choice = scan.next().toUpperCase();
-					
-					switch (choice) {
-					case "1": {
-
-						for (int a = 1; a < stopListArray.size(); a++) {
-							for (int b = a; b > 0; b--) {
-								Stop lower = stopListArray.get(b - 1);
-								Stop higher = stopListArray.get(b);
-								if (higher.getObjectSearch().compareTo(lower.getObjectSearch()) < 0) {
-									stopListArray.set(b, lower);
-									stopListArray.set(b - 1, higher);
-								} else
-									break;
-							}
-							System.out.println("Object of Search =   " + stopListArray.get(a).DatatoCSVString());
-							//NEED TO COMPARE THIS AGAINST THE STRING OFFENSIVE WEAPONS TO IT ONLY PRINTS RELEVANT DATA.
-						}
-
 				}
+				
 			}
-				}
-			}
+				
+
+//			case "2": {
+//				System.out.println("Search Categories.\n");
+//				for (int i = 0; i < stopListArray.size(); i++) {
+//					for (int j = i + 1; j < stopListArray.size(); j++) {
+//						if (stopListArray.get(i).tocsvString().equals(stopListArray.get(j).tocsvString())) {
+//							stopListArray.remove(j);
+//							j--;
+//						}
+//					}
+//
+//					System.out.println("Object of Search =   " + stopListArray.get(i).tocsvString());
+//					System.out.println("\n** Object of Search Choice **");
+//					System.out.println("1 - Offensive weapons");
+//					System.out.println("2 - Controlled drugs");
+//					System.out.println("3 - Article for use in theft");
+//					System.out.println("4 - Firearms");
+//					System.out.println("5 - Evidence of offences under the Act");
+//					System.out.println("6 - Fireworks");
+//					System.out.println("7 - Crossbows");
+//					System.out.println("8 - Goods on which duty has not been paid etc");
+//					System.out.println("Q - Quit");
+//					System.out.print("Pick : ");
+//					
+//					choice = scan.next().toUpperCase();
+//					
+//					switch (choice) {
+//					case "1": {
+//
+//						for (int a = 1; a < stopListArray.size(); a++) {
+//							for (int b = a; b > 0; b--) {
+//								Stop lower = stopListArray.get(b - 1);
+//								Stop higher = stopListArray.get(b);
+//								if (higher.getObjectSearch().compareTo(lower.getObjectSearch()) < 0) {
+//									stopListArray.set(b, lower);
+//									stopListArray.set(b - 1, higher);
+//								} else
+//									break;
+//							}
+//							
+//							
+//							System.out.println("Object of Search =   " + stopListArray.get(a).DatatoCSVString());
+//							//NEED TO COMPARE THIS AGAINST THE STRING OFFENSIVE WEAPONS TO IT ONLY PRINTS RELEVANT DATA.
+//						}
+//						
+//						
+//
+//				}
+//			}
+//				}
+//			}
 
 			case "3": {
 
