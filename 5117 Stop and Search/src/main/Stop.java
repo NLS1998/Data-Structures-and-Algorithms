@@ -174,4 +174,8 @@ public class Stop extends Main {
 	public void setOutcomeObjectSearch(Boolean outcomeObjectSearch) {
 		this.outcomeObjectSearch = outcomeObjectSearch;
 	}
+	public String DatatoCSVString() {
+		return type + SEP + date + SEP + policingOperation + SEP + policingOperationType + SEP + latitude + SEP + longitude + SEP
+				+ gender + SEP + ageRange + SEP + selfEthnicity + SEP + ethnicity + SEP + legislation + SEP + objectSearch + SEP + outcome + SEP + outcomeObjectSearch + SEP + clothesRemoval;
+	}
 	}
