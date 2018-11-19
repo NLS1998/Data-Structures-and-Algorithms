@@ -73,7 +73,6 @@ public class Main {
 				String legislations = stopListArray.get(i).DatatoCSVString();
 				if (!A1.contains(legislation))
 					A1.add(legislation);
-				if (!A2.contains(legislations))
 					A2.add(legislations);
 				index = i;
 				}
