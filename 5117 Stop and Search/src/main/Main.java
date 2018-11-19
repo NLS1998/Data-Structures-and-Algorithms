@@ -13,7 +13,6 @@ public class Main {
 		CSVReader reader = new CSVReader();// reads csvreader class
 		LinkedList<Stop> stopList = reader.createList();// Creates List
 		ArrayList<Stop> stopListArray = new ArrayList<>(stopList);// Converts stopList to array.
-		ArrayList<Stop> stopListArrays = new ArrayList<>(stopList);
 		Scanner scan = new Scanner(System.in);
 		outputCrimes(stopList);
 		String choice = "";
@@ -33,35 +32,32 @@ public class Main {
 			case "1": { // loops through StopListArray and compares duplicates, if duplicate is found it
 						// is removed.
 
+				List<String> objectsOfSearch = new ArrayList<>(); //new arraylist to hold data from StopListArray while deleting 
+																  //Duplicates.
+				
 				System.out.println("\n Search Categories.\n");
 				for (int i = 0; i < stopListArray.size(); i++) {
-					for (int j = i + 1; j < stopListArray.size(); j++) {
-						if (stopListArray.get(i).tocsvString().equals(stopListArray.get(j).tocsvString())) {
-							stopListArray.remove(j);
-							stopListArray.remove(null);
-							j--;
-						}
-					}
-
-					System.out.println("** " + stopListArray.get(i).tocsvString());
+					String object = stopListArray.get(i).getObjectSearch();
+					if (!objectsOfSearch.contains(object))
+						objectsOfSearch.add(object);
 				}
+				
+				for (String object:objectsOfSearch )
+					System.out.println("**"+object);
 				System.out.println("\n** Please enter the object of search name you would like to view data on **\n");
 				Scanner scans = new Scanner(System.in);
 				choices = scans.nextLine();
 				boolean listContainsInput = false;
+
+				for (int counter = 0; counter < stopListArray.size(); counter++) {
+					if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
+						listContainsInput = true;
+						System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments works
+					}
+				}
 				
-			    for  (int counter = 0; counter < stopListArrays.size(); counter++){  
-			        if (choices.equals(stopListArrays.get(counter).getObjectSearch())){
-			            listContainsInput = true;
-			        
-			    }
-			    if(listContainsInput) {
-			        System.out.println("** " + stopListArrays.get(counter).DatatoCSVString()); //if statments works but when a string is found prints everything instead of just objectSearch
-			        																		   //data relating to the entered search name...
-			    } else {
-			        System.out.println("Incorrect");
-			    }
-			}
+				if (!listContainsInput)
+					System.out.println("sorry chief");
 			}
 
 			case "2": {
