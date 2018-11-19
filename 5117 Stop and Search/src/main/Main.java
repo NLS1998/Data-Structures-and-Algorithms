@@ -2,6 +2,7 @@ package main;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -61,6 +62,21 @@ public class Main {
 			}
 
 			case "2": {
+				System.out.println("Which month would you like to search for? "); // asks for the month the user wants to see
+				String decision = scan.nextLine();
+				
+				List<String> A1 = new ArrayList<>(); // creates the first array list to store the legislation
+				int index;
+				for (int i = 0; i < stopListArray.size(); i++) {
+				String legislation = stopListArray.get(i).getLegislation();
+				if (!A1.contains(legislation))
+					A1.add(legislation);
+				index = i;
+				}
+				
+				List<String> A2 = new ArrayList<>(); // need to make the second array list to store frequency of legislation for given month
+				
+
 			}
 
 			case "3": {
@@ -71,10 +87,6 @@ public class Main {
 		} while (!choice.equals("Q"));
 		System.out.println("-- GOODBYE --");
 	}
-
-	// Got this part in for task C however cannot get the successful part to work
-	// It constantly says that it cannot convert from an Enum to a boolean
-	// However it is the True or False value from the data we need to sort this part
 
 	// TODO: Counts are wrong??
 
