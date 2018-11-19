@@ -17,7 +17,7 @@ public class Main {
 		outputCrimes(stopList);
 		String choice = "";
 		String choices = "";
-
+		
 		do {
 			System.out.println("\n** MAIN MENU **");
 			System.out.println("1 - Object Of Search");
@@ -83,6 +83,7 @@ public class Main {
 		for (int i = 0; i < stopList.size(); i++) {
 			Stop currentCrime = stopList.get(i);
 			if (currentCrime != null) {
+				
 				if (currentCrime.getOutcome()
 						.matches("(Suspect|Offender|Local|Article|Arrest|Khat|Penalty|Community|Summons|Caution).*")
 						&& currentCrime.getOutcomeObjectSearch() == true) { // If outcome was related to object of
@@ -115,7 +116,7 @@ public class Main {
 		System.out.println(stars);
 		System.out.println(unsuccessful + " || Were unsuccessful");
 		System.out.println(stars);
-		System.out.println(invalid + "   || Were null");
+		System.out.println(invalid + "   || Had no outcome");
 		System.out.println(stars);
 	}
 

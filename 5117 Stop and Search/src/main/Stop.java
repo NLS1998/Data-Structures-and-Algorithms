@@ -5,7 +5,7 @@ public class Stop extends Main {
 	// COMMENTS ARE ON HOW TO SERIALIZE EACH DATA TYPE Position in csvParts List
 	private final String SEP = ",";
 	private String type; // 0
-	private String date; // Date class will have serialization method, use substrings. 1
+	private Date date; // Date class will have serialization method, use substrings. 1
 	private String policingOperation; // 2
 	private String policingOperationType; // 3
 	private String latitude; // 4
@@ -25,7 +25,7 @@ public class Stop extends Main {
 		String[] csvParts = csvString.split(SEP, -1); // Returns an array
 		int idx = 0;
 		type = csvParts[idx++];
-		date = csvParts[idx++];
+		date = new Date(csvParts[idx++]);
 		policingOperation = csvParts[idx++];
 		policingOperationType = csvParts[idx++];
 		latitude = csvParts[idx++];
@@ -59,11 +59,11 @@ public class Stop extends Main {
 		this.type = type;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
