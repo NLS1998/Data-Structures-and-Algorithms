@@ -65,19 +65,23 @@ public class Main {
 				System.out.println("Which month would you like to search for? "); // asks for the month the user wants to see
 				String decision = scan.nextLine();
 				
-				List<String> A1 = new ArrayList<>(); // creates the first array list to store the legislation
+				List<String> A1 = new ArrayList<>();// Holds legislation categories.
+				List<String> A2 = new ArrayList<>();// creates the first array list to store the legislation data
 				int index;
 				for (int i = 0; i < stopListArray.size(); i++) {
 				String legislation = stopListArray.get(i).getLegislation();
+				String legislations = stopListArray.get(i).DatatoCSVString();
 				if (!A1.contains(legislation))
 					A1.add(legislation);
+				if (!A2.contains(legislations))
+					A2.add(legislations);
 				index = i;
 				}
-				
-				List<String> A2 = new ArrayList<>(); // need to make the second array list to store frequency of legislation for given month
-				
+				System.out.println(A1);
+				System.out.println(A2);
+				// the data of both arrays stored and printing we need link each legislation to each legislation.
+				}	
 
-			}
 
 			case "3": {
 
