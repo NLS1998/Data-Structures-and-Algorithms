@@ -65,8 +65,8 @@ public class Main {
 				System.out.println("Which month would you like to search for? "); // asks for the month the user wants to see
 				String decision = scan.nextLine();
 				
-				List<String> A1 = new ArrayList<>();// Holds legislation categories.
-				List<String> A2 = new ArrayList<>();// creates the first array list to store the legislation data
+				List<String> A1 = new ArrayList<>();// Stores legislation categories.
+				List<String> A2 = new ArrayList<>();// Stores legislation data
 				int index;
 				for (int i = 0; i < stopListArray.size(); i++) {
 				String legislation = stopListArray.get(i).getLegislation();
