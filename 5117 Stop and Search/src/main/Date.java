@@ -18,8 +18,9 @@ public class Date {
 		this.minutes = Integer.valueOf(dateStr.substring(14,16)); // + 20,21
 		this.seconds = Integer.valueOf(dateStr.substring(17,19)); // + 23,24
 		
-		System.out.println(dateStr);
-		this.dateToString();
+//		Print Date's Data when created
+//		System.out.println(dateStr);
+//		this.dateToString();
 		
 	}
 	

@@ -11,20 +11,27 @@ public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		CSVReader reader = new CSVReader();// reads csvreader class
-		LinkedList<Stop> stopList = reader.createList();// Creates List
-		ArrayList<Stop> stopListArray = new ArrayList<>(stopList);// Converts stopList to array.
+		CSVReader reader = new CSVReader(); // reads csvreader class
+		LinkedList<Stop> stopList = reader.createList(); // Creates List
+		ArrayList<Stop> stopListArray = new ArrayList<>(stopList); // Converts stopList to array.
 		Scanner scan = new Scanner(System.in);
-		outputCrimes(stopList);
 		String choice = "";
 		String choices = "";
 		
 		do {
 			System.out.println("\n** MAIN MENU **");
-			System.out.println("1 - Object Of Search");
-			System.out.println("2 - Choose Object Of Search Data To View.");
-			System.out.println("3 - Lsoa Name");
-			System.out.println("Q - Quit");
+			System.out.println("1 - Object Of Search"); // Feature A
+			
+			System.out.println("2 - Choose Object Of Search Data To View."); // Feature D
+			
+			System.out.println("3 - Determine How Many Stop and Searches Successful"); // Feature C
+			
+			System.out.println("4 - Find and report the legislation which produces the highest Stop and Search frequency for a specified month ");
+			
+			System.out.println("5 - Find and report the legislation which produces the highest successful Stop and Search frequency for a specified month ");
+			
+			System.out.println("6 - Find which (self-determined) ethnic group has the highest number of recorded stop and search events, and output this data");
+
 			System.out.print("Pick : ");
 
 			choice = scan.next().toUpperCase();
@@ -83,15 +90,31 @@ public class Main {
 
 
 			case "3": {
-
+				outputCrimes(stopList);
+				break;
+			}
+			
+			case "4": { 
+				// Find and report the legislation which produces the highest 			 Stop and Search frequency for a specified month
+				// Find and report the legislation which produces the highest SUCCESFULL Stop and Search frequency for a specified month
+				
+				break;
+			}
+			case "5": {
+				// Find which (self-determined) ethnic group has the highest number of recorded stop and search events, and output this data
+				// List in reverse chronological order
+				
+				break;
+			}
+			case "6": { 
+				// One more analysis (search and/or sort) feature of your choosing that uses multiple search attributes
+				
 				break;
 			}
 			}
 		} while (!choice.equals("Q"));
 		System.out.println("-- GOODBYE --");
 	}
-
-	// TODO: Counts are wrong??
 
 	private static void outputCrimes(List<Stop> stopList) {
 		int successful = 0, partSuccessful = 0, unsuccessful = 0, invalid = 0;
@@ -134,5 +157,5 @@ public class Main {
 		System.out.println(invalid + "   || Had no outcome");
 		System.out.println(stars);
 	}
-
+	
 }
