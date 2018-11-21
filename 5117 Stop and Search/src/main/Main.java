@@ -14,6 +14,7 @@ public class Main {
 		CSVReader reader = new CSVReader(); // reads csvreader class
 		LinkedList<Stop> stopList = reader.createList(); // Creates List
 		ArrayList<Stop> stopListArray = new ArrayList<>(stopList); // Converts stopList to array.
+		outputCrimes(stopList);
 		Scanner scan = new Scanner(System.in);
 		String choice = "";
 		String choices = "";
@@ -22,15 +23,11 @@ public class Main {
 			System.out.println("\n** MAIN MENU **");
 			System.out.println("1 - Object Of Search"); // Feature A
 			
-			System.out.println("2 - Choose Object Of Search Data To View."); // Feature D
+			System.out.println("2 - Find and report the legislation which produces the highest Stop and Search frequency for a specified month ");
 			
-			System.out.println("3 - Determine How Many Stop and Searches Successful"); // Feature C
+			System.out.println("3 - Find and report the legislation which produces the highest successful Stop and Search frequency for a specified month ");
 			
-			System.out.println("4 - Find and report the legislation which produces the highest Stop and Search frequency for a specified month ");
-			
-			System.out.println("5 - Find and report the legislation which produces the highest successful Stop and Search frequency for a specified month ");
-			
-			System.out.println("6 - Find which (self-determined) ethnic group has the highest number of recorded stop and search events, and output this data");
+			System.out.println("4 - Find which (self-determined) ethnic group has the highest number of recorded stop and search events, and output this data");
 
 			System.out.print("Pick : ");
 
@@ -66,8 +63,9 @@ public class Main {
 				
 				if (!listContainsInput)
 					System.out.println("sorry chief");
+				break;
 			}
-
+				
 			case "2": {
 				System.out.println("Which month would you like to search for? "); // asks for the month the user wants to see
 				String decision = scan.nextLine();
@@ -87,10 +85,10 @@ public class Main {
 				System.out.println(A2);
 				// the data of both arrays stored and printing we need link each legislation to each legislation.
 				}	
-
+				break;
 
 			case "3": {
-				outputCrimes(stopList);
+				
 				break;
 			}
 			

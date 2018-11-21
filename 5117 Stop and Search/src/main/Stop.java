@@ -175,7 +175,7 @@ public class Stop extends Main {
 		this.outcomeObjectSearch = outcomeObjectSearch;
 	}
 	public String DatatoCSVString() {
-		return type + SEP + date + SEP + policingOperation + SEP + policingOperationType + SEP + latitude + SEP + longitude + SEP
+		return type + SEP + "Y:" + date.getYear() + " M:" + date.getMonth() + " D:" + date.getDay() + " Time - Hr:" + date.getHour() + " Mins:" + date.getMinutes() + " Secs:" + date.getSeconds() + SEP + policingOperation + SEP + policingOperationType + SEP + latitude + SEP + longitude + SEP
 				+ gender + SEP + ageRange + SEP + selfEthnicity + SEP + ethnicity + SEP + legislation + SEP + objectSearch + SEP + outcome + SEP + outcomeObjectSearch + SEP + clothesRemoval;
 	}
 	}
