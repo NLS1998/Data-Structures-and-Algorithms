@@ -3,6 +3,7 @@ package main;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,6 +19,7 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		String choice = "";
 		String choices = "";
+		int index = 0;
 		
 		do {
 			System.out.println("\n** MAIN MENU **");
@@ -47,9 +49,11 @@ public class Main {
 						objectsOfSearch.add(object);
 				}
 				
-				for (String object:objectsOfSearch )
-					System.out.println("**"+object);
-				System.out.println("\n** Please enter the object of search name you would like to view data on **\n");
+				for (Iterator<String> iterate = objectsOfSearch.iterator(); iterate.hasNext(); index++) {
+				    String pos = iterate.next();
+				    System.out.println(index + ": " + pos);
+				}
+				System.out.println("\n** Please enter the number of Object Search you would like to view data on? **\n");
 				Scanner scans = new Scanner(System.in);
 				choices = scans.nextLine();
 				boolean listContainsInput = false;
@@ -72,14 +76,14 @@ public class Main {
 				
 				List<String> A1 = new ArrayList<>();// Stores legislation categories.
 				List<String> A2 = new ArrayList<>();// Stores legislation data
-				int index;
+				int indexs;
 				for (int i = 0; i < stopListArray.size(); i++) {
 				String legislation = stopListArray.get(i).getLegislation();
 				String legislations = stopListArray.get(i).DatatoCSVString();
 				if (!A1.contains(legislation))
 					A1.add(legislation);
 					A2.add(legislations);
-				index = i;
+				indexs = i;
 				}
 				System.out.println(A1);
 				System.out.println(A2);
