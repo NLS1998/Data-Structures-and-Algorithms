@@ -23,7 +23,7 @@ public class Main {
 		
 		do {
 			System.out.println("\n** MAIN MENU **");
-			System.out.println("1 - Object Of Search"); // Feature A
+			System.out.println("1 - Object Of Search + Relating data search."); // Feature A
 			
 			System.out.println("2 - Find and report the legislation which produces the highest Stop and Search frequency for a specified month ");
 			
@@ -53,7 +53,7 @@ public class Main {
 				    String pos = iterate.next();
 				    System.out.println(index + ": " + pos);
 				}
-				System.out.println("\n** Please enter the number of Object Search you would like to view data on? **\n");
+				System.out.println("\n** Please enter the number of Object of Search you would like to view data on? **\n");
 				Scanner scans = new Scanner(System.in);
 				choices = scans.nextLine();
 				boolean listContainsInput = false;
@@ -71,7 +71,7 @@ public class Main {
 			}
 				
 			case "2": {
-				System.out.println("Which month would you like to search for? "); // asks for the month the user wants to see
+				System.out.println("\n** Which month would you like to search for? **\n "); // asks for the month the user wants to see
 				String decision = scan.nextLine();
 				
 				List<String> A1 = new ArrayList<>();// Stores legislation categories.
