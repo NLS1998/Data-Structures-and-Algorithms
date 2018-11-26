@@ -1,11 +1,13 @@
 package main;
 
+import java.awt.RenderingHints.Key;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -63,36 +65,49 @@ public class Main {
 				choices = scans.nextLine();
 				int choiceNum = Integer.parseInt(choices);
 				boolean listContainsInput = false;
-				
+
+				if (choiceNum >= 11) {
+					System.out.println("** ERROR!! Please enter a correct index position I.E. 0-10. **"); // works
+					break;
+				}
+
 				String objectOf = objectsOfSearch.get(choiceNum);
 				for (int counter = 0; counter < stopListArray.size(); counter++) {
 					if (objectOf.equals(stopListArray.get(counter).getObjectSearch())) {
 						listContainsInput = true;
 						System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																									// works
 					}
 				}
-				break;
 			}
+				break;
 
 			case "2": {
 				System.out.println("\n** Which month would you like to search for? **\n "); // asks for the month the
-																							// user wants to see
-				String decision = scan.nextLine();
-
-				List<String> A1 = new ArrayList<>();// Stores legislation categories.
-				List<String> A2 = new ArrayList<>();// Stores legislation data
-				int indexs;
-				for (int i = 0; i < stopListArray.size(); i++) {
-					String legislation = stopListArray.get(i).getLegislation();
-					String legislations = stopListArray.get(i).DatatoCSVString();
-					if (!A1.contains(legislation))
-						A1.add(legislation);
-					A2.add(legislations);
-					indexs = i;
-				}
-				System.out.println(A1);
-				System.out.println(A2);
+				
+				 Map<String,Integer> map = new HashMap<String, Integer>();
+			        for(int i=0;i<stopListArray.size();i++){            
+			            Integer count = map.get(stopListArray.get(i).getLegislation());       
+			            map.put(stopListArray.get(i).getLegislation(), count==null?1:count+1);   //auto boxing and count
+			        }
+			        System.out.println(map);
+			 //prints all legislations and displays occurrences amount per legislation, need to allow the user to choose
+			 //the month they want and display the highest stop for that month.
+			    
+//				String decision = scan.nextLine();
+//
+//				List<String> A1 = new ArrayList<>();// Stores legislation categories.
+//				List<String> A2 = new ArrayList<>();// Stores legislation data
+//				int indexs;
+//				for (int i = 0; i < stopListArray.size(); i++) {
+//					String legislation = stopListArray.get(i).getLegislation();
+//					String legislations = stopListArray.get(i).DatatoCSVString();
+//					if (!A1.contains(legislation))
+//						A1.add(legislation);
+//					A2.add(legislations);
+//					indexs = i;
+//				}
+//				System.out.println("\n" + A1);
+//				System.out.println(A2);
 				// the data of both arrays stored and printing we need link each legislation to
 				// each legislation.
 			}

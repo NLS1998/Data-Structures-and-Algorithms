@@ -52,38 +52,3 @@ public class CSVReader {
 
 	}
 }
-		
-//public final static String SEP = ","; // Comma seperated value, this is the delimiter.
-//public static String date;
-//public static String partPolicingOp;
-//public static String policingOp;
-//public static double longitude;
-//public static double latitude;
-//public static String gender;
-//public static String ethnicity;
-//public static String officerEthnicity; 
-//public static String legislation; 
-//public static String objectSearch;
-//public static String outcome;
-//public static String outcomeObjectSearch;
-//public static String clothesRemoval;
-		
-//		policeforce idx = 0;		
-//		date = csvParts[idx++];
-//		partPolicingOp = csvParts[idx++];
-//		policingOp = csvParts[idx++];
-//		longitude = Double.valueOf(csvParts[idx++]);
-//		latitude = Double.valueOf(csvParts[idx++]);
-//		gender = csvParts[idx++];
-//		ethnicity = csvParts[idx++];
-//		officerEthnicity = csvParts[idx++];
-//		legislation = csvParts[idx++];
-//		objectSearch = csvParts[idx++];
-//		outcome = csvParts[idx++];
-//		outcomeObjectSearch = csvParts[idx++];
-//		clothesRemoval = csvParts[idx++];
-		
-//	public String toCSVString() {
-//		return  SEP + date + SEP + partPolicingOp + SEP + policingOp + SEP + longitude + SEP + latitude + SEP
-//				+ gender + SEP + ethnicity + SEP + officerEthnicity + SEP + legislation + SEP + objectSearch + SEP + outcome + SEP + outcomeObjectSearch + clothesRemoval;
-//	}

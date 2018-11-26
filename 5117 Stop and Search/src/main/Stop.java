@@ -124,7 +124,7 @@ public class Stop extends Main {
 	}
 
 	public String getLegislation() {
-		return legislation;
+		return legislation + SEP;
 	}
 
 	public void setLegislation(String legislation) {
