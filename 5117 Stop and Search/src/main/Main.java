@@ -61,131 +61,17 @@ public class Main {
 						"\n** Please enter the number of Object of Search you would like to view data on? **\n");
 				Scanner scans = new Scanner(System.in);
 				choices = scans.nextLine();
+				int choiceNum = Integer.parseInt(choices);
 				boolean listContainsInput = false;
 				
-				int objectNo = 0;
-
-
-				switch (objectNo) {
-				case 0: {
-					choices = "Offensive weapons";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-						}
-					}}
-					break;
-					
-				case 1: 
-					choices = "Controlled drugs";
-					objectNo = 1;
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
+				String objectOf = objectsOfSearch.get(choiceNum);
+				for (int counter = 0; counter < stopListArray.size(); counter++) {
+					if (objectOf.equals(stopListArray.get(counter).getObjectSearch())) {
+						listContainsInput = true;
+						System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
+																									// works
 					}
-					break;
-				case 2:
-					choices = "Article for use in theft";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
-					}
-					break;
-				case 3:
-					choices = "Stolen goods";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
-					}
-					break;
-				case 4:
-					choices = "Articles for use in criminal damage";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
-					}
-					break;
-				case 6:
-					choices = "Firearms";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
-					}
-					break;
-				case 7:
-					choices = "Evidence of offences under the Act";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
-					}
-					break;
-				case 8:
-					choices = "Fireworks";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
-					}
-					break;
-				case 9:
-					choices = "Crossbows";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
-					}
-					break;
-				case 10:
-					choices = "Goods on which duty has not been paid etc.";
-					for (int counter = 0; counter < stopListArray.size(); counter++) {
-						if (choices.equals(stopListArray.get(counter).getObjectSearch())) {
-							listContainsInput = true;
-							System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
-																										// works
-							
-						}
-					}
-					break;
-				default:
-					choices = "Invalid month";
-					listContainsInput = false;
-					break;
-
 				}
-				System.out.println(choices);
-
 				break;
 			}
 
