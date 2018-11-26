@@ -124,7 +124,12 @@ public class Stop extends Main {
 	}
 
 	public String getLegislation() {
-		return legislation + SEP;
+		
+		if(legislation.equals("")) {
+			this.legislation = "No Legislation";
+		}
+		
+		return legislation;
 	}
 
 	public void setLegislation(String legislation) {
