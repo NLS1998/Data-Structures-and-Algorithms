@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 public class Stop extends Main {
 
 	// COMMENTS ARE ON HOW TO SERIALIZE EACH DATA TYPE Position in csvParts List
@@ -19,28 +21,56 @@ public class Stop extends Main {
 	private String outcome;// 12
 	private Boolean outcomeObjectSearch;// 13
 	private String clothesRemoval;// 14
+	private String policeForce; // Substring'd
 	
-	Stop(String csvString) {// Serialises all read in data
+	Stop(String csvString, String fileName) {// Serialises all read in data
 
 		String[] csvParts = csvString.split(SEP, -1); // Returns an array
 		int idx = 0;
+		
+		policeForce = serializePoliceForce(fileName);
 		type = csvParts[idx++];
 		date = new Date(csvParts[idx++]);
 		policingOperation = csvParts[idx++];
 		policingOperationType = csvParts[idx++];
-		latitude = csvParts[idx++];
-		longitude = csvParts[idx++];
-		gender = csvParts[idx++];
+		latitude = csvParts[idx++]; // Nullable
+		longitude = csvParts[idx++]; // Nullable
+		gender = csvParts[idx++]; // Nullable
 		ageRange = EnumAgeRange.getFrom(csvParts[idx++]);
-		selfEthnicity = csvParts[idx++];
+		selfEthnicity = serializeSelfEthnicity(csvParts[idx++]);
 		ethnicity = csvParts[idx++];
 		legislation = csvParts[idx++];
 		objectSearch = csvParts[idx++];
 		outcome = csvParts[idx++];
 		outcomeObjectSearch =  Boolean.parseBoolean(csvParts[idx++]);
 		clothesRemoval = csvParts[idx++];
+		
+	}
+	
+	private String serializeSelfEthnicity(String ethnicity) {
+		ArrayList<String> ethnicitys = new ArrayList<>();
+			
+		String[] splitEthnicity = ethnicity.split("\\t|,|;|\\.|\\?|!|-|:|@|\\[|\\]|\\(|\\)|\\{|\\}|_|\\*|/|\\s+");
+		
+		return splitEthnicity[0];
 	}
 
+	private String serializePoliceForce(String fileName) {
+		String[] fileNameSplit = fileName.split("-");
+		
+		String PF = fileNameSplit[2];
+		
+		return PF;
+	}
+	
+	public String getPoliceForce() {
+		return policeForce;
+	}
+	
+	public void setPoliceForce(String policeForce) {
+		this.policeForce = policeForce;
+	}
+	
 	public String tocsvString() {
 
 		return objectSearch; // Prints only Object Search column
@@ -126,7 +156,7 @@ public class Stop extends Main {
 	public String getLegislation() {
 		
 		if(legislation.equals("")) {
-			this.legislation = "No Legislation";
+			this.legislation = "No Legislation Given";
 		}
 		
 		return legislation;
@@ -173,14 +203,22 @@ public class Stop extends Main {
 	}		
 
 	public Boolean getOutcomeObjectSearch() {
-		// TODO Auto-generated method stub
+		
+		if(this.objectSearch.equals("")) {
+			this.objectSearch = "No Data";
+		}
+		
 		return outcomeObjectSearch;
 	}
+	
 	public void setOutcomeObjectSearch(Boolean outcomeObjectSearch) {
 		this.outcomeObjectSearch = outcomeObjectSearch;
 	}
+	
 	public String DatatoCSVString() {
 		return type + SEP + "Y:" + date.getYear() + " M:" + date.getMonth() + " D:" + date.getDay() + " Time - Hr:" + date.getHour() + " Mins:" + date.getMinutes() + " Secs:" + date.getSeconds() + SEP + policingOperation + SEP + policingOperationType + SEP + latitude + SEP + longitude + SEP
 				+ gender + SEP + ageRange + SEP + selfEthnicity + SEP + ethnicity + SEP + legislation + SEP + objectSearch + SEP + outcome + SEP + outcomeObjectSearch + SEP + clothesRemoval;
 	}
+	
+	
 	}

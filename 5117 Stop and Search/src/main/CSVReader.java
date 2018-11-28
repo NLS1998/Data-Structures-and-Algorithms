@@ -24,6 +24,8 @@ public class CSVReader {
 			Files.walk(Paths.get(rootPath)).filter(Files::isRegularFile).forEach(file -> { // Walk through each of the child folders, finding the actual files. (not folders, isRegularFile)
 			    File csv = new File(file.toUri()); // Gets the file's directory, turning into an individual file.
 			    
+			    
+			    
 			    BufferedReader br = null;
 				try {
 					br = new BufferedReader(new FileReader(csv));
@@ -38,7 +40,7 @@ public class CSVReader {
     		  	String allData;
 				while ((allData = br.readLine()) != null) 
 				{
-					stopList.add(new Stop(allData));
+					stopList.add(new Stop(allData, csv.getName()));
 					
 				}
 			} catch (IOException e) {

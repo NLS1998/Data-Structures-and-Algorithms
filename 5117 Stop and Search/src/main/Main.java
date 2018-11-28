@@ -22,7 +22,13 @@ public class Main {
 		String choice = "";
 		String choices;
 		int index = 0;
-
+		
+		//		*** GENERATING UNIQUE LIST ***		//
+		ArrayList<String> uniqueLegislation = generateUniqueLegislation(stopList);
+		ArrayList<String> uniquePoliceForce = generateUniquePoliceForce(stopList);
+		ArrayList<String> uniqueSelfEthnicity = generateUniqueSelfEthnicity(stopList);
+		
+		
 		do {
 			System.out.println("\n** MAIN MENU **");
 			System.out.println("1 - Object Of Search + Relating data search."); // Feature A
@@ -79,45 +85,18 @@ public class Main {
 						System.out.println("** " + stopListArray.get(counter).DatatoCSVString()); // if statments
 					}
 				}
-			}
+				index = 0;
 				break;
+			}
+				
 
 			case "2": {
-				
-				specifiedMonth(stopList);
-//				 Map<String,Integer> map = new HashMap<String, Integer>();
-//			        for(int i=0;i<stopListArray.size();i++){            
-//			            Integer count = map.get(stopListArray.get(i).getLegislation());       
-//			            map.put(stopListArray.get(i).getLegislation(), count==null?1:count+1);   //auto boxing and count
-//			        }
-//			      System.out.println(map);
-//			     System.out.println("");
-			 //prints all legislations and displays occurrences amount per legislation, need to allow the user to choose
-			 //the month they want and display the highest stop for that month.
-			    
-//				String decision = scan.nextLine();
-//
-//				List<String> A1 = new ArrayList<>();// Stores legislation categories.
-//				List<String> A2 = new ArrayList<>();// Stores legislation data
-//				int indexs;
-//				for (int i = 0; i < stopListArray.size(); i++) {
-//					String legislation = stopListArray.get(i).getLegislation();
-//					String legislations = stopListArray.get(i).DatatoCSVString();
-//					if (!A1.contains(legislation))
-//						A1.add(legislation);
-//					A2.add(legislations);
-//					indexs = i;
-//				}
-//				System.out.println("\n" + A1);
-//				System.out.println(A2);
-				// the data of both arrays stored and printing we need link each legislation to
-				// each legislation.
-				
+				specifiedMonth(stopList, uniqueLegislation);
 				break;
 			}
 
 			case "3": {
-				
+				specifiedEthnicity(stopList, uniquePoliceForce, uniqueLegislation, uniqueSelfEthnicity);
 				break;
 			}
 
@@ -132,7 +111,7 @@ public class Main {
 
 	}
 
-	private static void specifiedMonth(List<Stop> stopList) {
+	private static void specifiedMonth(List<Stop> stopList, ArrayList<String> uniqueLegislation) {
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -154,22 +133,13 @@ public class Main {
 			}
 			
 		} while(true);
-		
-		
-		ArrayList<String> uniqueLegislation = new ArrayList<>();
+
 		ArrayList<Integer> legislationCounters = new ArrayList<>();
 		ArrayList<Integer> successCounters = new ArrayList<>();
 		Integer legIndex = 0;
 		int count = 0;
 		int successCount = 0;
-		
-		for(Stop stop : stopList) {
-			
-			if (!(uniqueLegislation.contains(stop.getLegislation()))) {
-				uniqueLegislation.add(stop.getLegislation());
-			}	
-		}
-		
+
 		for(String legislation : uniqueLegislation) {
 			for(Stop stop : stopList) {
 				if(stop.getLegislation().equals(legislation) && stop.getDate().getMonth() == intMonth) {
@@ -239,4 +209,133 @@ public class Main {
 		System.out.println(stars);
 	}
 
+	private static void specifiedEthnicity(List<Stop> stopList, ArrayList<String> uniquePoliceForce, ArrayList<String> uniqueLegislation, ArrayList<String> uniqueSelfEthnicity) {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		// MONTH
+		System.out.println("\n** Which month would you like to search for? [1 - 12] **\n "); // asks for the month the
+		String specifiedMonth = "Placeholder";
+		String specifiedPoliceForce = "Placeholder";
+		
+		Integer intMonth = 0;
+		Integer intPF = 0;
+		do {
+			specifiedMonth = scan.next();
+			try {
+				intMonth = Integer.parseInt(specifiedMonth);
+				break;
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid Input, Please Type the Wanted Month's Number.");
+			}
+		} while(true);
+		
+		System.out.println("What police force do you want?");
+		
+		int i = 1;
+		for(String PF : uniquePoliceForce) {
+			
+			System.out.println(i + ": " + PF);
+			i++;
+		}
+		i = 0;
+
+		do {
+			specifiedPoliceForce = scan.next();
+			try {
+				intPF = Integer.parseInt(specifiedPoliceForce);
+				
+				if(intPF > uniquePoliceForce.size() && intPF > 0) {
+					System.out.println("Invalid Input, please specify a number from the given list!");
+				} else {
+					break;
+				}
+				
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid Input, Please Input a Number!");
+			}
+		} while(true);
+		
+		specifiedPoliceForce = uniquePoliceForce.get(intPF - 1);
+		
+		
+		String specifiedLegislation;
+		Integer intLeg = 0;
+		System.out.println("What legislation do you want?");
+		
+		i = 1;
+		for(String leg : uniqueLegislation) {
+			
+			System.out.println(i + ": " + leg);
+			i++;
+		}
+		i = 0;
+
+		do {
+			specifiedLegislation = scan.next();
+			try {
+				intLeg = Integer.parseInt(specifiedLegislation);
+				
+				if(intPF > uniqueLegislation.size() && intPF > 0) {
+					System.out.println("Invalid Input, please specify a number from the given list!");
+				} else {
+					break;
+				}
+				
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid Input, Please Input a Number!");
+			}
+		} while(true);
+		
+		specifiedLegislation = uniqueLegislation.get(intLeg - 1);
+		
+		ArrayList<Integer> selfEthnicityCounters = new ArrayList<>();
+		
+		// TODO:
+		// Counters
+		
+	}
+	
+	
+	private static ArrayList<String> generateUniqueLegislation(LinkedList<Stop> stopList) {
+		
+		ArrayList<String> uniqueLegislation = new ArrayList<>();
+		
+		for(Stop stop : stopList) {
+			
+			if (!(uniqueLegislation.contains(stop.getLegislation()))) {
+				uniqueLegislation.add(stop.getLegislation());
+				
+			}	
+		}			
+		return uniqueLegislation;
+	}
+	
+	private static ArrayList<String> generateUniqueSelfEthnicity(LinkedList<Stop> stopList) {
+		
+		ArrayList<String> uniqueSelfEthnicity = new ArrayList<>();
+		
+		for(Stop stop : stopList) {
+			
+			if (!(uniqueSelfEthnicity.contains(stop.getSelfEthnicity()))) {
+				uniqueSelfEthnicity.add(stop.getSelfEthnicity());
+				
+			}	
+		}			
+		return uniqueSelfEthnicity;
+	}
+	
+	private static ArrayList<String> generateUniquePoliceForce(LinkedList<Stop> stopList) {
+		
+		ArrayList<String> uniquePoliceForce = new ArrayList<>();
+		
+		for(Stop stop : stopList) {
+			
+			if (!(uniquePoliceForce.contains(stop.getPoliceForce()))) {
+				uniquePoliceForce.add(stop.getPoliceForce());
+				
+			}	
+		}		
+		return uniquePoliceForce;	
+	}
 }
