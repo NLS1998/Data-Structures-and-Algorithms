@@ -1,6 +1,6 @@
 package main;
 
-public class Date {
+public class Date implements Comparable<Date> {
 	private int year;
 	private int month;
 	private int day;
@@ -24,6 +24,20 @@ public class Date {
 		
 	}
 	
+	@Override
+	public int compareTo(Date o) {
+		
+		Date other = (Date) o;
+		
+		if(getDay() > other.getDay())
+			return 1;
+		else if(getDay() < other.getDay())
+			return -1;
+		else
+			return 0;
+	}
+	
+
 	public void dateToString() {
 		System.out.printf("%02d:%02d:%02d - %02d/%02d/%d \n \n",this.hour, this.minutes, this.seconds, this.day, this.month, this.year);
 	}
@@ -65,4 +79,8 @@ public class Date {
 	public void setSeconds(int seconds) {
 		this.seconds = seconds;
 	}
+
+
+
+
 }

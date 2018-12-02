@@ -138,6 +138,11 @@ public class Stop extends Main {
 	}
 
 	public String getSelfEthnicity() {
+		
+		if(this.selfEthnicity.equals("")) {
+			this.selfEthnicity = "No Self-Ethnicity";
+		}
+		
 		return selfEthnicity;
 	}
 
@@ -146,6 +151,11 @@ public class Stop extends Main {
 	}
 
 	public String getEthnicity() {
+		
+		if(this.ethnicity.equals("")) {
+			this.ethnicity = "No Ethnicity Determined";
+		}
+		
 		return ethnicity;
 	}
 

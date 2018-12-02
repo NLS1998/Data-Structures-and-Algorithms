@@ -3,6 +3,8 @@ package main;
 import java.awt.RenderingHints.Key;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -37,7 +39,7 @@ public class Main {
 					"2 - Find and report the legislation which produces the highest Stop and Search frequency for a specified month ");
 
 			System.out.println(
-					"3 - Find which (self-determined) ethnic group has the highest number of recorded stop and search events, and output this data");
+					"3 - Find which (self-determined) ethnic group has the highest number of recorded stop and search events, based on specific criteria.");
 					// Based on police force AND month + Reverse Chronological Order
 					// Based on specific legislation
 			
@@ -213,87 +215,192 @@ public class Main {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		// MONTH
-		System.out.println("\n** Which month would you like to search for? [1 - 12] **\n "); // asks for the month the
-		String specifiedMonth = "Placeholder";
-		String specifiedPoliceForce = "Placeholder";
+		System.out.println("Do you wish to find the highest recorded stop and search count for:");
 		
-		Integer intMonth = 0;
-		Integer intPF = 0;
+		System.out.println("[1] Specific Month & Police Force");
+		System.out.println("[2] Specific Legislation");
+		
+		String answer = scan.next();
+		Integer intAnswer = 0;
+		
 		do {
-			specifiedMonth = scan.next();
 			try {
-				intMonth = Integer.parseInt(specifiedMonth);
-				break;
-			} catch (NumberFormatException e) {
-				System.out.println("Invalid Input, Please Type the Wanted Month's Number.");
-			}
-		} while(true);
-		
-		System.out.println("What police force do you want?");
-		
-		int i = 1;
-		for(String PF : uniquePoliceForce) {
-			
-			System.out.println(i + ": " + PF);
-			i++;
-		}
-		i = 0;
-
-		do {
-			specifiedPoliceForce = scan.next();
-			try {
-				intPF = Integer.parseInt(specifiedPoliceForce);
+				intAnswer = Integer.parseInt(answer);
 				
-				if(intPF > uniquePoliceForce.size() && intPF > 0) {
-					System.out.println("Invalid Input, please specify a number from the given list!");
+				if(intAnswer > 2 || intAnswer < 0) {
+					System.out.println("Please specify one of the given options!");
 				} else {
 					break;
 				}
 				
 			} catch (NumberFormatException e) {
-				System.out.println("Invalid Input, Please Input a Number!");
+				System.out.println("Invalid Input, Please Specificy one of the Given Criteria. [0 - 9]");
 			}
-		} while(true);
+		} while (true);
 		
-		specifiedPoliceForce = uniquePoliceForce.get(intPF - 1);
+		switch(intAnswer) {
 		
-		
-		String specifiedLegislation;
-		Integer intLeg = 0;
-		System.out.println("What legislation do you want?");
-		
-		i = 1;
-		for(String leg : uniqueLegislation) {
+		case 1 : { // Specific Month & Police Force
 			
-			System.out.println(i + ": " + leg);
-			i++;
-		}
-		i = 0;
-
-		do {
-			specifiedLegislation = scan.next();
-			try {
-				intLeg = Integer.parseInt(specifiedLegislation);
-				
-				if(intPF > uniqueLegislation.size() && intPF > 0) {
-					System.out.println("Invalid Input, please specify a number from the given list!");
-				} else {
+			// MONTH
+			System.out.println("\n** Which month would you like to search for? [1 - 12] **\n "); // asks for the month the
+			String specifiedMonth = "Placeholder";
+			String specifiedPoliceForce = "Placeholder";
+			
+			Integer intMonth = 0;
+			Integer intPF = 0;
+			do {
+				specifiedMonth = scan.next();
+				try {
+					intMonth = Integer.parseInt(specifiedMonth);
 					break;
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid Input, Please Type the Wanted Month's Number.");
 				}
+			} while(true);
+			
+			// POLICE FORCE
+			System.out.println("What police force do you want?");
+			
+			int i = 1;
+			for(String PF : uniquePoliceForce) {
 				
-			} catch (NumberFormatException e) {
-				System.out.println("Invalid Input, Please Input a Number!");
+				System.out.println(i + ": " + PF);
+				i++;
 			}
-		} while(true);
+			i = 0;
+
+			do {
+				specifiedPoliceForce = scan.next();
+				try {
+					intPF = Integer.parseInt(specifiedPoliceForce);
+					
+					if(intPF > uniquePoliceForce.size() && intPF > 0) {
+						System.out.println("Invalid Input, please specify a number from the given list!");
+					} else {
+						break;
+					}
+					
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid Input, Please Input a Number!");
+				}
+			} while(true);
+			
+			specifiedPoliceForce = uniquePoliceForce.get(intPF - 1);
+			
+			ArrayList<Stop> temporaryStops = new ArrayList<Stop>();
+			ArrayList<Integer> ethnicityCounters = new ArrayList<Integer>();
+			
+			
+			for(String ethnicity : uniqueSelfEthnicity) {
+				int count = 0;
+				
+				for(Stop stop : stopList) {
+					
+					if(specifiedPoliceForce.equals(stop.getPoliceForce()) && intMonth == stop.getDate().getMonth() && ethnicity.equals(stop.getSelfEthnicity())) {
+						count++;
+						
+						
+						
+						// Store this stop in an array, so that it can be sorted later and output (FEATURE G)
+					}
+				}
+				ethnicityCounters.add(count);
+				System.out.println(ethnicity + " was stopped " + count + " times.");
+				count = 0;
+			}
+			
+			int finalIndex = 0;
+			int current = 0;
+			int highest = 0;
+			for (int idx = 0; idx < uniqueSelfEthnicity.size(); idx++) {
+				
+				
+				current = ethnicityCounters.get(idx);
+				
+				System.out.println(uniqueSelfEthnicity.get(idx));
+				System.out.println(current);
+				
+				if(current > highest) {
+					System.out.println("Final Index Changed!");
+					highest = current;
+					finalIndex = idx;
+				}
+			}
+			
+			System.out.println(uniqueSelfEthnicity.get(finalIndex) + " is the highest self-defined ethnicity that is stopped!");
+			
+			for(Stop stop : stopList) {
+			
+				if(specifiedPoliceForce.equals(stop.getPoliceForce()) && intMonth == stop.getDate().getMonth() && uniqueSelfEthnicity.get(finalIndex).equals(stop.getSelfEthnicity())) {
+					temporaryStops.add(stop);
+				}
+			
+			}
+			
+			//TODO:
+			// Currently only orders them by the DAY, not by the Hour/Minute/Second -- Ask David for help on this?
+			
+			Collections.sort(temporaryStops, new Comparator<Stop>()
+					{
+						public int compare(Stop stop1, Stop stop2)
+						{
+							return Integer.valueOf(Integer.toString(stop1.getDate().getDay()).compareTo(Integer.toString(stop2.getDate().getDay())));
+						}
+					}
+			);
+			
+			for(Stop stop : temporaryStops) {
+				stop.getDate().dateToString();
+			}
+			break;
+		} 
 		
-		specifiedLegislation = uniqueLegislation.get(intLeg - 1);
-		
-		ArrayList<Integer> selfEthnicityCounters = new ArrayList<>();
-		
-		// TODO:
-		// Counters
-		
+		case 2 : { // Specific Legislation
+			
+			String specifiedLegislation;
+			Integer intLeg = 0;
+			System.out.println("What legislation do you want?");
+			
+			Integer i = 1;
+			for(String leg : uniqueLegislation) {
+				
+				System.out.println(i + ": " + leg);
+				i++;
+			}
+			i = 0;
+
+			do {
+				specifiedLegislation = scan.next();
+				try {
+					intLeg = Integer.parseInt(specifiedLegislation);
+					
+					if(intLeg > uniqueLegislation.size() && intLeg > 0) {
+						System.out.println("Invalid Input, please specify a number from the given list!");
+					} else {
+						break;
+					}
+					
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid Input, Please Input a Number!");
+				}
+			} while(true);
+			
+			specifiedLegislation = uniqueLegislation.get(intLeg - 1);
+			
+			for(String ethnicity : uniqueSelfEthnicity) {
+				Integer count = 0;
+				for(Stop stop : stopList) {
+					if(ethnicity.equals(stop.getSelfEthnicity()) && specifiedLegislation.equals(stop.getLegislation())) {
+						count++;
+					}
+				}
+				System.out.println(ethnicity + " was stopped " + count + " times.");
+				count = 0;
+			}
+			break;
+			}
+		}
 	}
 	
 	
