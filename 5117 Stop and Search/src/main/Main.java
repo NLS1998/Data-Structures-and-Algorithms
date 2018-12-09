@@ -1,15 +1,12 @@
 package main;
 
-import java.awt.RenderingHints.Key;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -29,7 +26,10 @@ public class Main {
 		ArrayList<String> uniqueLegislation = generateUniqueLegislation(stopList);
 		ArrayList<String> uniquePoliceForce = generateUniquePoliceForce(stopList);
 		ArrayList<String> uniqueSelfEthnicity = generateUniqueSelfEthnicity(stopList);
-		
+		ArrayList<String> uniqueGender = generateUniqueGender(stopList);
+		ArrayList<String> uniqueType = generateUniqueType(stopList);
+		ArrayList<String> remOfClothes = generateUniqueremOfClothes(stopList);
+		 
 		
 		do {
 			System.out.println("\n** MAIN MENU **");
@@ -103,7 +103,7 @@ public class Main {
 			}
 
 			case "4": {
-
+				ownFeature(stopList, uniqueType);
 				break;
 			}
 		}
@@ -111,6 +111,50 @@ public class Main {
 		} while (!choice.equals("Q"));
 		System.out.println("-- GOODBYE --");
 
+	}
+	private static void ownFeature(List<Stop> stopList, ArrayList<String> uniqueType) {
+	
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("\n** Press 1 to see totals of each type of stop **\n "); // asks for the month the
+		String answer = scan.next();
+		Integer intAnswer = 0;
+		
+
+		do {
+			try {
+				intAnswer = Integer.parseInt(answer);
+				
+				if(intAnswer > 3 || intAnswer < 1) {
+					System.out.println("Please specify one of the given options!");
+					break;
+				} else {
+					break;
+				}
+				
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid Input, Please Specificy one of the Given Criteria. [0 - 9]");
+			}
+		} while (true);
+		
+		ArrayList<Integer> typeCounters = new ArrayList<>();
+		int count = 0;
+		
+		for(String type : uniqueType) {
+			for(Stop stop : stopList) {
+				if(stop.getType().equals(type)) {
+					count++;
+			}
+		}
+		typeCounters.add(count);
+		count = 0;
+	}
+		
+		for(int i = 0; i < uniqueType.size(); i++) {
+			System.out.println(uniqueType.get(i));
+			System.out.println(typeCounters.get(i) + " :  Where undertaken!");
+			System.out.println("");
+		}
 	}
 
 	private static void specifiedMonth(List<Stop> stopList, ArrayList<String> uniqueLegislation) {
@@ -444,5 +488,38 @@ public class Main {
 			}	
 		}		
 		return uniquePoliceForce;	
+	}
+	private static ArrayList<String> generateUniqueGender(LinkedList<Stop> stopList) {
+		
+		ArrayList<String> uniqueGender = new ArrayList<>();
+		
+		for(Stop stop : stopList) {
+			
+			if (!(uniqueGender.contains(stop.getGender()))) {
+				uniqueGender.add(stop.getGender());
+				
+			}	
+		}		
+		return uniqueGender;	
+	}
+	private static ArrayList<String> generateUniqueType(LinkedList<Stop> stopList) {
+		ArrayList<String> uniqueType = new ArrayList<>();
+		
+		for(Stop stop : stopList) {
+			if (!(uniqueType.contains(stop.getType()))) {
+				uniqueType.add(stop.getType());
+			}
+		}
+		return uniqueType;
+	}
+	private static ArrayList<String> generateUniqueremOfClothes(LinkedList<Stop> stopList) {
+		ArrayList<String> remOfClothes = new ArrayList<>();
+		
+		for(Stop stop : stopList) {
+			if (!(remOfClothes.contains(stop.getClothesRemoval()))) {
+				remOfClothes.add(stop.getClothesRemoval());
+			}
+		}
+		return remOfClothes;
 	}
 }
