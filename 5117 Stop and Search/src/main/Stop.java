@@ -130,6 +130,7 @@ public class Stop extends Main {
 	}
 
 	public EnumAgeRange getAgeRange() {
+		
 		return ageRange;
 	}
 

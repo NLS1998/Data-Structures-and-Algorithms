@@ -155,10 +155,18 @@ public class Main {
 		List<Stop> femaleStops = new ArrayList<Stop>();
 		List<Stop> otherStops = new ArrayList<Stop>();
 		
-		List<String> uniqueAgeRanges = new ArrayList<String>();
+		List<EnumAgeRange> uniqueAgeRanges = new ArrayList<EnumAgeRange>();
+
+		List<Integer> ageRangeCounters = new ArrayList<Integer>();
+	
 		
 		
-		for(Stop stop : stopList) {
+		for(Stop stop : stopList) { 
+			
+			if(!(uniqueAgeRanges.contains(stop.getAgeRange()))) {
+			uniqueAgeRanges.add(stop.getAgeRange());
+			}
+			
 			if(stop.getGender().equals("Male")) {
 				maleStops.add(stop);
 			} else if (stop.getGender().equals("Female")) {
@@ -166,19 +174,39 @@ public class Main {
 			} else {
 				otherStops.add(stop);
 			}
-			
-			
-			if(!(uniqueAgeRanges.contains(stop.getAgeRange()))) {
-				uniqueAgeRanges.add(stop.getAgeRange());
+		}
+		
+		for(EnumAgeRange ageRange : uniqueAgeRanges) {
+			int i = 0; 
+			for(Stop stop : maleStops) {
+				if (ageRange.equals(stop.getAgeRange())) {
+					i ++; 
+				}
 			}
+			
+			System.out.println("\n\nFor the age range "+ageRange+":");
+			
+			System.out.println("Males have been stopped "+i+" times.");
+			i = 0;
+			for(Stop stop : femaleStops) {
+				if (ageRange.equals(stop.getAgeRange())) {
+					i ++; 
+				}
+			}
+			System.out.println("Females have been stopped "+i+" times.");
+			i = 0;
+			for(Stop stop : otherStops) {
+				if (ageRange.equals(stop.getAgeRange())) {
+					i ++; 
+				}
+			}
+			System.out.println("Other genders have been stopped "+i+" times.");
 		}
 		
 		System.out.println();
 		System.out.println("Amount of males that where stopped: " + maleStops.size());
 		System.out.println("Amount of females that where stopped: " + femaleStops.size());
 		System.out.println("Amount of times gender was not specified: " + otherStops.size());
-		
-		
 	}
 
 	private static void specifiedMonth(List<Stop> stopList, ArrayList<String> uniqueLegislation) {
