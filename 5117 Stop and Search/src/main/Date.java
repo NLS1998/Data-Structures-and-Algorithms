@@ -17,24 +17,20 @@ public class Date implements Comparable<Date> {
 		this.hour = Integer.valueOf(dateStr.substring(11,13));
 		this.minutes = Integer.valueOf(dateStr.substring(14,16)); // + 20,21
 		this.seconds = Integer.valueOf(dateStr.substring(17,19)); // + 23,24
-		
-//		Print Date's Data when created
-//		System.out.println(dateStr);
-//		this.dateToString();
-		
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Long getTicks()
+	{
+		java.util.Date proper = new java.util.Date(year, month, day, hour, minutes);
+		return proper.getTime()+(this.seconds*1000);
 	}
 	
 	@Override
 	public int compareTo(Date o) {
 		
 		Date other = (Date) o;
-		
-		if(getDay() > other.getDay())
-			return 1;
-		else if(getDay() < other.getDay())
-			return -1;
-		else
-			return 0;
+		return this.getTicks().compareTo(other.getTicks());
 	}
 	
 

@@ -113,30 +113,8 @@ public class Main {
 
 	}
 	private static void ownFeature(List<Stop> stopList, ArrayList<String> uniqueType) {
-	
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.println("\n** Press 1 to see totals of each type of stop **\n "); // asks for the month the
-		String answer = scan.next();
-		Integer intAnswer = 0;
-		
-
-		do {
-			try {
-				intAnswer = Integer.parseInt(answer);
-				
-				if(intAnswer > 3 || intAnswer < 1) {
-					System.out.println("Please specify one of the given options!");
-					break;
-				} else {
-					break;
-				}
-				
-			} catch (NumberFormatException e) {
-				System.out.println("Invalid Input, Please Specificy one of the Given Criteria. [0 - 9]");
-			}
-		} while (true);
-		
+		System.out.println("Totals based on stop type: ");
+		System.out.println();
 		ArrayList<Integer> typeCounters = new ArrayList<>();
 		int count = 0;
 		
@@ -155,6 +133,52 @@ public class Main {
 			System.out.println(typeCounters.get(i) + " :  Where undertaken!");
 			System.out.println("");
 		}
+		
+		System.out.println("Below are statistics based on gender stops:");
+		
+		// Gender
+			// Age Range
+				// Clothes removed
+		
+		// Male
+			// Age
+				// number (how many had clothes removed)
+			// Age 
+			// Age
+		
+		List<String> genderList = new ArrayList<String>(); // Hard-coded, genders are unlikely to change.
+		genderList.add("Male");
+		genderList.add("Female");
+		genderList.add("Other");
+		
+		List<Stop> maleStops = new ArrayList<Stop>();
+		List<Stop> femaleStops = new ArrayList<Stop>();
+		List<Stop> otherStops = new ArrayList<Stop>();
+		
+		List<String> uniqueAgeRanges = new ArrayList<String>();
+		
+		
+		for(Stop stop : stopList) {
+			if(stop.getGender().equals("Male")) {
+				maleStops.add(stop);
+			} else if (stop.getGender().equals("Female")) {
+				femaleStops.add(stop);
+			} else {
+				otherStops.add(stop);
+			}
+			
+			
+			if(!(uniqueAgeRanges.contains(stop.getAgeRange()))) {
+				uniqueAgeRanges.add(stop.getAgeRange());
+			}
+		}
+		
+		System.out.println();
+		System.out.println("Amount of males that where stopped: " + maleStops.size());
+		System.out.println("Amount of females that where stopped: " + femaleStops.size());
+		System.out.println("Amount of times gender was not specified: " + otherStops.size());
+		
+		
 	}
 
 	private static void specifiedMonth(List<Stop> stopList, ArrayList<String> uniqueLegislation) {
@@ -389,7 +413,8 @@ public class Main {
 					{
 						public int compare(Stop stop1, Stop stop2)
 						{
-							return Integer.valueOf(Integer.toString(stop1.getDate().getDay()).compareTo(Integer.toString(stop2.getDate().getDay())));
+							return stop1.getDate().compareTo(stop2.getDate());
+							//return Integer.valueOf(Integer.toString(stop1.getDate().getDay()).compareTo(Integer.toString(stop2.getDate().getDay())));
 						}
 					}
 			);
