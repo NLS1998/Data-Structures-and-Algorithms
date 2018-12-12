@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Main {
 		ArrayList<String> uniqueGender = generateUniqueGender(stopList);
 		ArrayList<String> uniqueType = generateUniqueType(stopList);
 		ArrayList<String> remOfClothes = generateUniqueremOfClothes(stopList);
-		 
+		// Unique Objects Of Search done Later On
 		
 		do {
 			System.out.println("\n** MAIN MENU **");
@@ -44,7 +45,7 @@ public class Main {
 					// Based on specific legislation
 			
 			System.out.println(
-					"4 - OUR OWN FEATURE");
+					"4 - OUR OWN FEATURE !!!");
 			
 			System.out.print("Pick : ");
 
@@ -231,7 +232,7 @@ public class Main {
 			}
 			
 		} while(true);
-
+		
 		ArrayList<Integer> legislationCounters = new ArrayList<>();
 		ArrayList<Integer> successCounters = new ArrayList<>();
 		Integer legIndex = 0;
@@ -499,7 +500,6 @@ public class Main {
 			}
 		}
 	}
-	
 	
 	private static ArrayList<String> generateUniqueLegislation(LinkedList<Stop> stopList) {
 		
