@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Main {
@@ -45,7 +46,7 @@ public class Main {
 					// Based on specific legislation
 			
 			System.out.println(
-					"4 - OUR OWN FEATURE !!!");
+					"4 - OUR OWN FEATURE");
 			
 			System.out.print("Pick : ");
 
@@ -219,6 +220,9 @@ public class Main {
 		String specifiedMonth = "Placeholder";
 		Integer intMonth = 0;
 		
+		HashMap<String, Integer> legislationMap = new HashMap<String, Integer>();
+		
+		HashMap<String, Integer> legislationMapSuccess = new HashMap<String, Integer>();
 		
 		do {
 			specifiedMonth = scan.next();
@@ -232,37 +236,52 @@ public class Main {
 			}
 			
 		} while(true);
-		
-		ArrayList<Integer> legislationCounters = new ArrayList<>();
-		ArrayList<Integer> successCounters = new ArrayList<>();
-		Integer legIndex = 0;
-		int count = 0;
-		int successCount = 0;
 
-		for(String legislation : uniqueLegislation) {
-			for(Stop stop : stopList) {
-				if(stop.getLegislation().equals(legislation) && stop.getDate().getMonth() == intMonth) {
+		for(Stop stop : stopList) {
+			if(stop.getDate().getMonth() == intMonth) {
+
+				int count = 1;
+
+				
+				
+				if(legislationMap.containsKey(stop.getLegislation())){
+					count = legislationMap.get(stop.getLegislation());
 					count++;
-					if (stop.getOutcome()
-							.matches("(Suspect|Offender|Local|Article|Arrest|Khat|Penalty|Community|Summons|Caution).*")
-							&& stop.getOutcomeObjectSearch() == true) { // If outcome was related to object of
-																				// search, then it was a successful stop.
-						successCount++;
+				}
+				legislationMap.put(stop.getLegislation(), count);
+				
+				if(stop.getOutcomeObjectSearch()) {
+					if(legislationMapSuccess.containsKey(stop.getLegislation())){
+						count = legislationMapSuccess.get(stop.getLegislation());
+						count++;
 					}
-					
+					legislationMapSuccess.put(stop.getLegislation(), count);
 				}
 			}
-			legislationCounters.add(count);
-			successCounters.add(successCount);
-			count = 0;
-			successCount = 0;
 		}
 		
-		for(int i = 0; i < uniqueLegislation.size(); i++) {
-			System.out.println(uniqueLegislation.get(i));
-			System.out.println(legislationCounters.get(i)  + " (Successful: " + successCounters.get(i) + ")");
-			System.out.println("");
+		int highestVal = 0;
+		String highestLeg = "";
+		for(Entry<String, Integer> entry : legislationMap.entrySet()) {
+			if(entry.getValue() > highestVal) {
+				highestVal = entry.getValue();
+				highestLeg = entry.getKey();
+			}
 		}
+		
+		System.out.println(highestLeg + " has the highest amount of stops: " + highestVal);
+		
+		highestVal = 0;
+		highestLeg = "";
+		for(Entry<String, Integer> entry : legislationMapSuccess.entrySet()) {
+			if(entry.getValue() > highestVal) {
+				highestVal = entry.getValue();
+				highestLeg = entry.getKey();
+			}
+		}
+		
+		System.out.println(highestLeg + " has the highest amount of succesfull stops: " + highestVal);
+		
 	}
 	
 	
