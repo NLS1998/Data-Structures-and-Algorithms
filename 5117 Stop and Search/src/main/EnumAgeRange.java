@@ -1,6 +1,7 @@
 package main;
 
 public enum EnumAgeRange {
+	CHILD("under 10"),
 	Minor("10-17"), // 10 - 17
 	YOUNGADULT("18-24"), // 18 - 24
 	ADULT("25-34"), // 25 - 34
