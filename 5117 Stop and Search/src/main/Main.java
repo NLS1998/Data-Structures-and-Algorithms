@@ -46,6 +46,8 @@ public class Main {
 			System.out.println(
 					"4 - OUR OWN FEATURE");
 			
+			System.out.println("Q - Quit Program");
+			
 			System.out.print("Pick : ");
 
 			choice = scan.next().toUpperCase();
