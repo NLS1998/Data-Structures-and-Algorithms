@@ -95,17 +95,17 @@ public class Main {
 				
 
 			case "2": {
-				specifiedMonth(stopList, uniqueLegislation);
+				specifiedMonth(stopListArray, uniqueLegislation);
 				break;
 			}
 
 			case "3": {
-				specifiedEthnicity(stopList, uniquePoliceForce, uniqueLegislation, uniqueSelfEthnicity);
+				specifiedEthnicity(stopListArray, uniquePoliceForce, uniqueLegislation, uniqueSelfEthnicity);
 				break;
 			}
 
 			case "4": {
-				ownFeature(stopList, uniqueType);
+				ownFeature(stopListArray, uniqueType);
 				break;
 			}
 		}
