@@ -46,7 +46,10 @@ public class Main {
 					// Based on specific legislation
 			
 			System.out.println(
-					"4 - OUR OWN FEATURE");
+					"4 - Type of stop related to gender and age");
+			
+			System.out.println(
+					"Q - Quit Program");
 			
 			System.out.print("Pick : ");
 
